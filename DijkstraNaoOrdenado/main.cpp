@@ -353,60 +353,112 @@ int main(){
     // Renomeia arquivo de saída para não sobrescrever a entrada
     nomeArquivoSaida = strncat(caminho, ".out", 4);
 
-	if(arquivoEntrada == NULL)
-   		printf("Nao foi possivel abrir o arquivo!");
+  // Este primeiro trecho trata das instâncias de grafos completos, que já consideram ida e volta (test-set1 e test-set2)
+    fscanf(arquivoEntrada, "%s", &prefixo);
 
-	while(!feof(arquivoEntrada)){
-        fscanf(arquivoEntrada, "%s %d %d %d" , &prefixo, &valor1, &valor2, &valor3);
+   	// Construção do grafo para as instâncias completas (test-set1 e test-set2)
+    if(strcmp(prefixo, "G") == 0) {
 
-        if(strcmp(prefixo, "V") == 0){
-            printf("Total de vertices do grafo: %d \n\n", valor1);
-            nVertices = valor1;
-            valor2 = 0;
-			valor3 = 0;
-            grafo = new Grafo (valor1+1);
+        while(!feof(arquivoEntrada)){
+            fscanf(arquivoEntrada, "%s %d %d %d" , &prefixo, &valor1, &valor2, &valor3);
+
+            if(strcmp(prefixo, "V") == 0){
+                printf("Total de vertices do grafo: %d \n\n", valor1);
+                nVertices = valor1;
+                valor2 = 0;
+                valor3 = 0;
+                grafo = new Grafo (valor1+1);
+            }
+
+            if(strcmp(prefixo, "E") == 0){
+                Grafo::Aresta *a = new Grafo::Aresta (valor1, valor2, valor3);
+                grafo->insereAresta (a->_v1 (), a->_v2 (), a->_peso ());
+                // Não insere aresta de volta pois o arquivo já possui essa informação
+                delete a;
+            }
         }
 
-        if(strcmp(prefixo, "E") == 0){
 
-            if(valor1 < raiz){
-            	raiz = valor1;
-		    }
-            Grafo::Aresta *a = new Grafo::Aresta (valor1, valor2, valor3);
-			grafo->insereAresta (a->_v1 (), a->_v2 (), a->_peso ());
-            //grafo->insereAresta (a->_v2 (), a->_v1 (), a->_peso ());
-            delete a;
+        fechaArquivo(arquivoEntrada);
+
+        printf("Digite o nó de origem entre 0 e %d :\n\n", nVertices);
+        scanf("%i", &raiz);
+
+        printf("Calculando Dijkstra...\n\n");
+
+        t_inicio = clock(); // Guarda o horário do início da execução
+
+        Dijkstra dj (grafo);
+
+        dj.calculaDijkstraVetorNaoOrdenado(raiz);
+
+        t_fim = clock(); // Guarda o horário do fim da execução
+
+        tempo = (float)(t_fim - t_inicio)/CLOCKS_PER_SEC; // Calcula o tempo de execução
+
+        FILE *arquivoSaida;
+        arquivoSaida = abreArquivo('a', nomeArquivoSaida);
+
+        fprintf(arquivoSaida, "\nTempo total de execucao: %f segundos.\n\n", tempo);
+
+        for (int i = 0; i < nVertices; ++i){
+            fprintf(arquivoSaida, "Origem: %i \t Destino: %d \t Distância: %d\n", raiz, i, dj._peso(i));
         }
-	}
+
+        fechaArquivo(arquivoSaida);
+        // A partir daqui trata das instâncias cujas arestas de volta devem ser inseridas a força (ALUE e DMXA)
+    } else if (strcmp(prefixo, "A") == 0){
+
+        while(!feof(arquivoEntrada)){
+            fscanf(arquivoEntrada, "%s %d %d %d" , &prefixo, &valor1, &valor2, &valor3);
+
+            if(strcmp(prefixo, "V") == 0){
+                printf("Total de vertices do grafo: %d \n\n", valor1);
+                nVertices = valor1;
+                valor2 = 0;
+                valor3 = 0;
+                grafo = new Grafo (valor1+1);
+            }
+
+            if(strcmp(prefixo, "E") == 0){
+                // Insere a aresta de volta para tornar o grafo bi-direcional
+                Grafo::Aresta *a = new Grafo::Aresta (valor1, valor2, valor3);
+                grafo->insereAresta (a->_v1 (), a->_v2 (), a->_peso ());
+                grafo->insereAresta (a->_v2 (), a->_v1 (), a->_peso ());
+                delete a;
+            }
+        }
 
 
-	fechaArquivo(arquivoEntrada);
+        fechaArquivo(arquivoEntrada);
 
-	//printf("Digite o nó de origem entre 0 e %d :\n\n", nVertices);
-	//scanf("%i", &raiz);
+        printf("Digite o nó de origem entre 1 e %d :\n\n", nVertices);
+        scanf("%i", &raiz);
 
-	printf("Calculando Dijkstra...\n\n");
+        printf("Calculando Dijkstra...\n\n");
 
-	t_inicio = clock(); // Guarda o horário do início da execução
+        t_inicio = clock(); // Guarda o horário do início da execução
 
-    Dijkstra dj (grafo);
+        Dijkstra dj (grafo);
 
-    dj.calculaDijkstraVetorNaoOrdenado(raiz);
+        dj.calculaDijkstraVetorNaoOrdenado(raiz);
 
-	t_fim = clock(); // Guarda o horário do fim da execução
+        t_fim = clock(); // Guarda o horário do fim da execução
 
-    tempo = (float)(t_fim - t_inicio)/CLOCKS_PER_SEC; // Calcula o tempo de execução
+        tempo = (float)(t_fim - t_inicio)/CLOCKS_PER_SEC; // Calcula o tempo de execução
 
-    FILE *arquivoSaida;
-    arquivoSaida = abreArquivo('a', nomeArquivoSaida);
+        FILE *arquivoSaida;
+        arquivoSaida = abreArquivo('a', nomeArquivoSaida);
 
-	fprintf(arquivoSaida, "\nTempo total de execucao: %f segundos.\n\n", tempo);
+        fprintf(arquivoSaida, "\nTempo total de execucao: %f segundos.\n\n", tempo);
 
-    for (int i = 1; i <= nVertices; ++i){
-    	fprintf(arquivoSaida, "Origem: %i \t Destino: %d \t Distância: %d\n", raiz, i, dj._peso(i));
-	}
+        for (int i = 1; i <= nVertices; ++i){
+            fprintf(arquivoSaida, "Origem: %i \t Destino: %d \t Distância: %d\n", raiz, i, dj._peso(i));
+        }
 
-    fechaArquivo(arquivoSaida);
+        fechaArquivo(arquivoSaida);
+
+    }
 
     printf("Dijkstra calculado para o grafo. Arquivo com os resultados gerado.\n\n\n");
 
