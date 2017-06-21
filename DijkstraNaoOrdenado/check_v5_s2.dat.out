@@ -6,3 +6,94 @@ Origem: 0 	 Destino: 1 	 Distância: 5
 Origem: 0 	 Destino: 2 	 Distância: 45
 Origem: 0 	 Destino: 3 	 Distância: 30
 Origem: 0 	 Destino: 4 	 Distância: 27
+
+Tempo total de execucao: 0.526572 segundos.
+
+Origem: 0 	 Destino: 0 	 Distância: 0
+Origem: 0 	 Destino: 1 	 Distância: 5
+Origem: 0 	 Destino: 2 	 Distância: 33
+Origem: 0 	 Destino: 3 	 Distância: 30
+Origem: 0 	 Destino: 4 	 Distância: 27
+
+Tempo total de execucao: 0.527731 segundos.
+
+Origem: 0 	 Destino: 0 	 Distância: 0
+Origem: 0 	 Destino: 1 	 Distância: 5
+Origem: 0 	 Destino: 2 	 Distância: 33
+Origem: 0 	 Destino: 3 	 Distância: 30
+Origem: 0 	 Destino: 4 	 Distância: 27
+
+Tempo total de execucao: 0.526673 segundos.
+
+Origem: 0 	 Destino: 0 	 Distância: 0
+Origem: 0 	 Destino: 1 	 Distância: 5
+Origem: 0 	 Destino: 2 	 Distância: 33
+Origem: 0 	 Destino: 3 	 Distância: 30
+Origem: 0 	 Destino: 4 	 Distância: 27
+
+Tempo total de execucao: 0.526545 segundos.
+
+Origem: 0 	 Destino: 0 	 Distância: 0
+Origem: 0 	 Destino: 1 	 Distância: 5
+Origem: 0 	 Destino: 2 	 Distância: 33
+Origem: 0 	 Destino: 3 	 Distância: 30
+Origem: 0 	 Destino: 4 	 Distância: 27
+
+Tempo total de execucao: 0.527190 segundos.
+
+Origem: 0 	 Destino: 0 	 Distância: 0
+Origem: 0 	 Destino: 1 	 Distância: 5
+Origem: 0 	 Destino: 2 	 Distância: 33
+Origem: 0 	 Destino: 3 	 Distância: 30
+Origem: 0 	 Destino: 4 	 Distância: 27
+
+Tempo total de execucao: 0.527920 segundos.
+
+Origem: 1 	 Destino: 0 	 Distância: 0
+Origem: 1 	 Destino: 1 	 Distância: 0
+Origem: 1 	 Destino: 2 	 Distância: 29
+Origem: 1 	 Destino: 3 	 Distância: 26
+Origem: 1 	 Destino: 4 	 Distância: 23
+
+Tempo total de execucao: 0.527431 segundos.
+
+Origem: 2 	 Destino: 0 	 Distância: 2
+Origem: 2 	 Destino: 1 	 Distância: 7
+Origem: 2 	 Destino: 2 	 Distância: 0
+Origem: 2 	 Destino: 3 	 Distância: 9
+Origem: 2 	 Destino: 4 	 Distância: 6
+
+Tempo total de execucao: 0.527122 segundos.
+
+Origem: 5 	 Destino: 0 	 Distância: 2147483647
+Origem: 5 	 Destino: 1 	 Distância: 2147483647
+Origem: 5 	 Destino: 2 	 Distância: 2147483647
+Origem: 5 	 Destino: 3 	 Distância: 2147483647
+Origem: 5 	 Destino: 4 	 Distância: 2147483647
+
+Tempo total de execucao: 0.616341 segundos.
+
+
+Tempo total de execucao: 0.603711 segundos.
+
+Origem: 2147483647 	 Destino: 1 	 Distância: 2147483647
+Origem: 2147483647 	 Destino: 2 	 Distância: 2147483647
+Origem: 2147483647 	 Destino: 3 	 Distância: 2147483647
+Origem: 2147483647 	 Destino: 4 	 Distância: 2147483647
+Origem: 2147483647 	 Destino: 5 	 Distância: 2147483647
+
+Tempo total de execucao: 0.609243 segundos.
+
+Origem: 2147483647 	 Destino: 0 	 Distância: 2147483647
+Origem: 2147483647 	 Destino: 1 	 Distância: 2147483647
+Origem: 2147483647 	 Destino: 2 	 Distância: 2147483647
+Origem: 2147483647 	 Destino: 3 	 Distância: 2147483647
+Origem: 2147483647 	 Destino: 4 	 Distância: 2147483647
+
+Tempo total de execucao: 0.606114 segundos.
+
+Origem: 2147483647 	 Destino: 0 	 Distância: 2147483647
+Origem: 2147483647 	 Destino: 1 	 Distância: 2147483647
+Origem: 2147483647 	 Destino: 2 	 Distância: 2147483647
+Origem: 2147483647 	 Destino: 3 	 Distância: 2147483647
+Origem: 2147483647 	 Destino: 4 	 Distância: 2147483647

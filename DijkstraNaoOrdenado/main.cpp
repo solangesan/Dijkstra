@@ -31,8 +31,7 @@ FILE* abreArquivo(char modo, char caminho[100])
     if(arquivo == NULL)
 	{
         printf("Nao foi possivel abrir o arquivo.");
-        //Menu();
-        exit(0); // <- excluir na versão final
+        exit(0);
 	}
 	return arquivo;
 }
@@ -66,6 +65,7 @@ class FPNaoOrdenado	{
 			this->peso = peso;
 		}
 	};
+
 	public:
 	int tamanho; //tamanho da fila
 	Elemento vet[MAXN]; //vetor  de tamanho mamximo definido contendo um Elemento(vertice, peso)
@@ -120,9 +120,11 @@ class FPNaoOrdenado	{
 	    	throw logic_error ("Erro: chaveNova com valor incorreto");
 		for(int i= 0; i< this->tamanho; i++){
 	    	temp = this->vet[i]; //
+	    	if(dado == temp._vertice()){
 				if(prior < this->vet[i]._peso())
 	      			this->vet[i].atribuiPeso(prior);
-	    }
+            }
+        }
 	}
 
 	bool vazio () {
@@ -177,7 +179,8 @@ class Grafo  {
 	        return this->vertice != celula.vertice;
 	      }
 	      const Celula& operator= (const Celula& cel) {
-	        this->vertice = cel.vertice; this->peso = cel.peso;
+	        this->vertice = cel.vertice;
+	        this->peso = cel.peso;
 	        return *this;
 	      }
 	      ~Celula () {}
@@ -341,18 +344,15 @@ int main(){
 
 	Grafo *grafo = new Grafo (nVertices+1);
 
-    //caminho = "/home/solange/Documentos/TrabalhoAPA2/grafos_5/check/check_v5_s2.dat";
-    printf("\nDigite o nome do arquivo: ");
+    printf("\nDigite o nome do arquivo que contém o grafo: ");
     scanf("%s", &caminho);
     arquivoEntrada = abreArquivo('l', caminho);
-    //arquivoEntrada =fopen("/home/solange/Documentos/TrabalhoAPA2/grafos_5/check/check_v5_s2.dat", "r");
 
     // Prepara o nome do arquivo de saída
 	char *nomeArquivoSaida;
     // Renomeia arquivo de saída para não sobrescrever a entrada
     nomeArquivoSaida = strncat(caminho, ".out", 4);
 
-	printf("abriu o arquivo \n\n");
 	if(arquivoEntrada == NULL)
    		printf("Nao foi possivel abrir o arquivo!");
 
@@ -371,7 +371,7 @@ int main(){
 
             if(valor1 < raiz){
             	raiz = valor1;
-			}
+		    }
             Grafo::Aresta *a = new Grafo::Aresta (valor1, valor2, valor3);
 			grafo->insereAresta (a->_v1 (), a->_v2 (), a->_peso ());
             //grafo->insereAresta (a->_v2 (), a->_v1 (), a->_peso ());
@@ -382,9 +382,10 @@ int main(){
 
 	fechaArquivo(arquivoEntrada);
 
-	printf("terminou de ler  o arquivo \n\n");
+	//printf("Digite o nó de origem entre 0 e %d :\n\n", nVertices);
+	//scanf("%i", &raiz);
 
-	printf("Iniciando Dijkstra...\n\n");
+	printf("Calculando Dijkstra...\n\n");
 
 	t_inicio = clock(); // Guarda o horário do início da execução
 
@@ -398,15 +399,16 @@ int main(){
 
     FILE *arquivoSaida;
     arquivoSaida = abreArquivo('a', nomeArquivoSaida);
-	//arquivoSaida =fopen("/home/solange/Documentos/TrabalhoAPA2/grafos_5/check/check_v5_s2.dat.out_3", "a");
 
 	fprintf(arquivoSaida, "\nTempo total de execucao: %f segundos.\n\n", tempo);
 
-    for (int i = 0; i < nVertices; ++i){
+    for (int i = 1; i <= nVertices; ++i){
     	fprintf(arquivoSaida, "Origem: %i \t Destino: %d \t Distância: %d\n", raiz, i, dj._peso(i));
 	}
 
     fechaArquivo(arquivoSaida);
+
+    printf("Dijkstra calculado para o grafo. Arquivo com os resultados gerado.\n\n\n");
 
     delete grafo;
     return 0;
