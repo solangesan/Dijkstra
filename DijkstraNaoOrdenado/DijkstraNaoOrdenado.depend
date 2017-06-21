@@ -12,3 +12,16 @@
 	<stdexcept>
 	<iostream>
 
+1498013355 source:/home/solange/GIT/Dijkstra/DijkstraNaoOrdenado/main.cpp
+	<stdio.h>
+	<stdlib.h>
+	<limits.h>
+	<string.h>
+	<iostream>
+	<time.h>
+	"Lista.h"
+
+1497833480 /home/solange/GIT/Dijkstra/DijkstraNaoOrdenado/Lista.h
+	<stdexcept>
+	<iostream>
+
