@@ -1,0 +1,14 @@
+# depslib dependency file v1.0
+1498004727 source:/home/solange/GIT/TrabalhoPratico/DijkstraNaoOrdenado/main.cpp
+	<stdio.h>
+	<stdlib.h>
+	<limits.h>
+	<string.h>
+	<iostream>
+	<time.h>
+	"Lista.h"
+
+1497833480 /home/solange/GIT/TrabalhoPratico/DijkstraNaoOrdenado/Lista.h
+	<stdexcept>
+	<iostream>
+
