@@ -326,7 +326,7 @@ void dijkstra(struct Grafo* grafo, int origem, char nomeArquivo[100])
 
     char *nomeArquivoSaida;
     // Renomeia arquivo de saída para não sobrescrever a entrada
-    nomeArquivoSaida = strncat(nomeArquivo, ".out", 4);
+    nomeArquivoSaida = strncat(nomeArquivo, "_heap.out", 9);
     arquivoSaida = abreArquivo('a',nomeArquivoSaida);
 
     // Imprime o tempo de execução
@@ -360,7 +360,7 @@ void FuncaoPrincipal(char caminho[30]){
             if(strcmp(prefixo, "V") == 0)
             {
                 V = valor1;
-
+                printf("Total de vertices do grafo: %d \n\n", V);
                 // Contrói o Grafo com V vértices
                 grafo = constroiGrafo(V);
             }
@@ -376,8 +376,9 @@ void FuncaoPrincipal(char caminho[30]){
 
          // Executa o Dijkstra para os grafos esparsos (inicia no vértice 1)
         if (no_origem > 0 && no_origem <= V){
+            printf("Calculando Dijkstra...\n\n");
             dijkstra(grafo, no_origem, caminho);
-            printf("Cálculo completo. Arquivo de saída gerado");
+            printf("Cálculo completo. Arquivo com os resultados gerado.\n\n");
         } else {
             printf("\nNó de origem inválido.");
 
@@ -390,7 +391,7 @@ void FuncaoPrincipal(char caminho[30]){
             if(strcmp(prefixo, "V") == 0)
             {
                 V = valor1;
-
+                printf("Total de vertices do grafo: %d \n\n", V);
                 // Constrói grafo com V vértices
                 grafo = constroiGrafo(V);
             }
@@ -405,8 +406,9 @@ void FuncaoPrincipal(char caminho[30]){
 
         // Executa o Dijkstra para os grafos completos (inicia no vértice 0)
         if (no_origem >= 0 && no_origem < V){
+            printf("Calculando Dijkstra...\n\n");
             dijkstra(grafo, no_origem, caminho);
-            printf("Cálculo completo. Arquivo de saída gerado");
+            printf("Cálculo completo. Arquivo com os resultados gerado.\n\n");
         } else {
             printf("\nNó de origem inválido.");
         }
@@ -418,7 +420,7 @@ void FuncaoPrincipal(char caminho[30]){
 
 // Função Menu
 void Menu(){
-    int opcao;
+    int opcao = 0;
     char nomearquivo[30];
     //Menu
     do {
@@ -434,7 +436,7 @@ void Menu(){
 
         switch(opcao){
             case 1:{
-                    printf("\nDigite o nome do arquivo com extensão: ");
+                    printf("\nDigite o nome completo do arquivo que contém o grafo: ");
                     scanf("%s", &nomearquivo);
                     FuncaoPrincipal(nomearquivo);
                     continue;
@@ -442,7 +444,7 @@ void Menu(){
             case 2:
                 exit(0);
             default:
-                printf("Opção inválida! Escolha outra opção.\n\n");
+                printf("\nOpção inválida! Escolha outra opção.\n\n");
         }
     }while(opcao != 2);
 }

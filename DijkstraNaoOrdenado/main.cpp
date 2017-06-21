@@ -344,14 +344,14 @@ int main(){
 
 	Grafo *grafo = new Grafo (nVertices+1);
 
-    printf("\nDigite o nome do arquivo que contém o grafo: ");
+    printf("\nDigite o nome completo do arquivo que contém o grafo: ");
     scanf("%s", &caminho);
     arquivoEntrada = abreArquivo('l', caminho);
 
     // Prepara o nome do arquivo de saída
 	char *nomeArquivoSaida;
     // Renomeia arquivo de saída para não sobrescrever a entrada
-    nomeArquivoSaida = strncat(caminho, ".out", 4);
+    nomeArquivoSaida = strncat(caminho, "_vetor.out", 10);
 
   // Este primeiro trecho trata das instâncias de grafos completos, que já consideram ida e volta (test-set1 e test-set2)
     fscanf(arquivoEntrada, "%s", &prefixo);
@@ -381,7 +381,7 @@ int main(){
 
         fechaArquivo(arquivoEntrada);
 
-        printf("Digite o nó de origem entre 0 e %d :\n\n", nVertices);
+        printf("Digite o nó de origem entre 0 e %d :", nVertices);
         scanf("%i", &raiz);
 
         printf("Calculando Dijkstra...\n\n");
@@ -399,7 +399,7 @@ int main(){
         FILE *arquivoSaida;
         arquivoSaida = abreArquivo('a', nomeArquivoSaida);
 
-        fprintf(arquivoSaida, "\nTempo total de execucao: %f segundos.\n\n", tempo);
+        fprintf(arquivoSaida, "\nTempo total de execução: %f segundo(s).\n\n", tempo);
 
         for (int i = 0; i < nVertices; ++i){
             fprintf(arquivoSaida, "Origem: %i \t Destino: %d \t Distância: %d\n", raiz, i, dj._peso(i));
@@ -432,7 +432,7 @@ int main(){
 
         fechaArquivo(arquivoEntrada);
 
-        printf("Digite o nó de origem entre 1 e %d :\n\n", nVertices);
+        printf("Digite o nó de origem entre 1 e %d :", nVertices);
         scanf("%i", &raiz);
 
         printf("Calculando Dijkstra...\n\n");
@@ -460,7 +460,7 @@ int main(){
 
     }
 
-    printf("Dijkstra calculado para o grafo. Arquivo com os resultados gerado.\n\n\n");
+    printf("Cálculo completo. Arquivo com os resultados gerado.\n\n\n");
 
     delete grafo;
     return 0;
